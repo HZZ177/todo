@@ -1,0 +1,82 @@
+[
+  {
+    "id": "DP-001",
+    "priority": "P0",
+    "title": "初始化桌面应用工程骨架",
+    "refs": "View 1: Review > 关键决策 > 决策 1 | package.json; src-tauri/**; src/**",
+    "dev_state": "未开始",
+    "test_state": "未开始",
+    "owner": "",
+    "notes": ""
+  },
+  {
+    "id": "DP-002",
+    "priority": "P0",
+    "title": "实现悬浮球收起态与位置持久化",
+    "refs": "View 1: Review > 设计来源 > 用户已确认的关键边界 | src/app/window-shell/**; src/store/ui-store.*; src-tauri/**",
+    "dev_state": "未开始",
+    "test_state": "未开始",
+    "owner": "",
+    "notes": ""
+  },
+  {
+    "id": "DP-003",
+    "priority": "P0",
+    "title": "实现单窗口展开态与切换动画",
+    "refs": "View 1: Review > 关键决策 > 决策 2 | src/app/window-shell/**; src/components/layout/**; src/store/ui-store.*",
+    "dev_state": "未开始",
+    "test_state": "未开始",
+    "owner": "",
+    "notes": ""
+  },
+  {
+    "id": "DP-004",
+    "priority": "P0",
+    "title": "建立 Todo 数据模型与本地存储",
+    "refs": "View 1: Review > 关键决策 > 决策 4 | src/types/**; src/store/todo-store.*; src/services/storage/**",
+    "dev_state": "未开始",
+    "test_state": "未开始",
+    "owner": "",
+    "notes": ""
+  },
+  {
+    "id": "DP-005",
+    "priority": "P1",
+    "title": "实现月视图与日期选中逻辑",
+    "refs": "View 1: Review > 任务概述 | src/features/calendar/**; src/store/ui-store.*; src/store/todo-store.*",
+    "dev_state": "未开始",
+    "test_state": "未开始",
+    "owner": "",
+    "notes": ""
+  },
+  {
+    "id": "DP-006",
+    "priority": "P1",
+    "title": "实现时间线视图与任务分组排序",
+    "refs": "View 1: Review > 任务概述 | src/features/timeline/**; src/store/ui-store.*; src/store/todo-store.*",
+    "dev_state": "未开始",
+    "test_state": "未开始",
+    "owner": "",
+    "notes": ""
+  },
+  {
+    "id": "DP-007",
+    "priority": "P1",
+    "title": "实现快速录入与完成状态联动",
+    "refs": "View 1: Review > 关键决策 > 决策 3 | src/features/todo-form/**; src/features/timeline/**; src/features/calendar/**",
+    "dev_state": "未开始",
+    "test_state": "未开始",
+    "owner": "",
+    "notes": ""
+  },
+  {
+    "id": "DP-008",
+    "priority": "P1",
+    "title": "实现系统托盘与一期测试收口",
+    "refs": "View 1: Review > 测试策略 | src-tauri/**; src/**/__tests__/**; .dev/test/**",
+    "dev_state": "未开始",
+    "test_state": "未开始",
+    "owner": "",
+    "notes": ""
+  }
+]
