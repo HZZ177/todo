@@ -2,7 +2,8 @@ import { fireEvent, render, screen } from '@testing-library/react'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 
 vi.mock('../lib/tauri', () => ({
-  togglePanelWindow: vi.fn(),
+  expandToPanel: vi.fn(),
+  startWindowDragging: vi.fn(),
 }))
 
 import { BallApp } from './BallApp'
@@ -16,8 +17,10 @@ describe('BallApp', () => {
     useUiStore.persist.clearStorage()
     useUiStore.setState({
       selectedDate: '2026-03-31',
-      panelVisible: false,
-      ballPosition: null,
+      visibleMonth: '2026-03-01',
+      currentView: 'month',
+      windowMode: 'ball',
+      windowPosition: null,
     })
     useTodoStore.setState({
       todos: [
@@ -33,9 +36,10 @@ describe('BallApp', () => {
     })
   })
 
-  it('shows todo badge and toggles panel', () => {
+  it('shows todo badge and switches to panel mode', () => {
     render(<BallApp />)
     expect(screen.getByText('1')).toBeInTheDocument()
     fireEvent.click(screen.getByRole('button', { name: '展开待办面板' }))
+    expect(useUiStore.getState().windowMode).toBe('panel')
   })
 })

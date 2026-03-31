@@ -1,5 +1,14 @@
 import { fireEvent, render, screen } from '@testing-library/react'
-import { beforeEach, describe, expect, it } from 'vitest'
+import { beforeEach, describe, expect, it, vi } from 'vitest'
+
+vi.mock('./lib/tauri', () => ({
+  expandToPanel: vi.fn(),
+  collapseToBall: vi.fn(),
+  startWindowDragging: vi.fn(),
+  syncWindowPosition: vi.fn(),
+  hidePanelWindow: vi.fn(),
+  onWindowFocusChanged: vi.fn(async () => undefined),
+}))
 
 import App from './App'
 import { useTodoStore } from './store/todo-store'
@@ -13,16 +22,16 @@ beforeEach(() => {
     selectedDate: '2026-03-31',
     visibleMonth: '2026-03-01',
     currentView: 'month',
-    panelVisible: true,
-    ballPosition: null,
+    windowMode: 'ball',
+    windowPosition: null,
   })
   useTodoStore.setState({ todos: [] })
 })
 
 describe('App', () => {
-  it('opens day view after selecting a date', () => {
+  it('switches from ball to panel', () => {
     render(<App />)
-    fireEvent.click(screen.getByText('31'))
-    expect(screen.getByText('当日待办')).toBeInTheDocument()
+    fireEvent.click(screen.getByRole('button', { name: '展开待办面板' }))
+    expect(useUiStore.getState().windowMode).toBe('panel')
   })
 })

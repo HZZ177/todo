@@ -1,5 +1,11 @@
 import { fireEvent, render, screen } from '@testing-library/react'
-import { beforeEach, describe, expect, it } from 'vitest'
+import { beforeEach, describe, expect, it, vi } from 'vitest'
+
+vi.mock('../lib/tauri', () => ({
+  collapseToBall: vi.fn(),
+  onWindowFocusChanged: vi.fn(async () => undefined),
+  startWindowDragging: vi.fn(),
+}))
 
 import { PanelApp } from './PanelApp'
 import { useTodoStore } from '../store/todo-store'
@@ -13,8 +19,8 @@ beforeEach(() => {
     selectedDate: '2026-03-31',
     visibleMonth: '2026-03-01',
     currentView: 'month',
-    panelVisible: true,
-    ballPosition: null,
+    windowMode: 'panel',
+    windowPosition: null,
   })
   useTodoStore.setState({ todos: [] })
 })

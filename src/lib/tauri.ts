@@ -1,5 +1,6 @@
 import { invoke } from '@tauri-apps/api/core'
 import { getCurrentWindow } from '@tauri-apps/api/window'
+import type { UnlistenFn } from '@tauri-apps/api/event'
 
 export async function expandToPanel() {
   try {
@@ -35,4 +36,16 @@ export async function startWindowDragging() {
 
 export async function hidePanelWindow() {
   return collapseToBall()
+}
+
+export async function onWindowFocusChanged(handler: (focused: boolean) => void): Promise<UnlistenFn | undefined> {
+  try {
+    const window = getCurrentWindow()
+    return await window.onFocusChanged(({ payload }) => {
+      handler(payload)
+    })
+  } catch (error) {
+    console.error('[tauri] onWindowFocusChanged failed', error)
+    return undefined
+  }
 }

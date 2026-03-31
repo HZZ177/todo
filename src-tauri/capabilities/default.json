@@ -3,8 +3,7 @@
   "identifier": "default",
   "description": "enables the default permissions",
   "windows": [
-    "ball",
-    "panel"
+    "main"
   ],
   "permissions": [
     "core:default",

@@ -35,10 +35,17 @@ body {
 }
 
 .panel-shell__header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: stretch;
   gap: 10px;
+}
+
+.panel-shell__dragbar {
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+  padding: 2px 0;
 }
 
 .panel-shell__header h1 {
@@ -47,11 +54,20 @@ body {
 }
 
 .panel-shell__close {
+  align-self: start;
   padding: 5px 10px;
   border-radius: 999px;
   background: var(--accent-soft);
   color: var(--text);
   font-size: 12px;
+  position: relative;
+  z-index: 1;
+}
+
+.panel-shell__drag-hint {
+  height: 8px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.04);
 }
 
 .view-tabs {

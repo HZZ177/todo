@@ -13,8 +13,8 @@ beforeEach(() => {
     selectedDate: '2026-03-31',
     visibleMonth: '2026-03-01',
     currentView: 'month',
-    panelVisible: true,
-    ballPosition: null,
+    windowMode: 'panel',
+    windowPosition: null,
   })
   useTodoStore.setState({ todos: [] })
 })

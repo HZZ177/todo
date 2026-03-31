@@ -11,8 +11,10 @@ beforeEach(() => {
   useUiStore.persist.clearStorage()
   useUiStore.setState({
     selectedDate: '2026-03-31',
-    panelVisible: true,
-    ballPosition: null,
+    visibleMonth: '2026-03-01',
+    currentView: 'day',
+    windowMode: 'panel',
+    windowPosition: null,
   })
   useTodoStore.setState({
     todos: [
