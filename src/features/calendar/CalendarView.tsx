@@ -11,7 +11,7 @@ type CalendarViewProps = {
 
 export function CalendarView({ month, onMonthChange }: CalendarViewProps) {
   const selectedDate = useUiStore((state) => state.selectedDate)
-  const setSelectedDate = useUiStore((state) => state.setSelectedDate)
+  const openDayView = useUiStore((state) => state.openDayView)
   const todos = useTodoStore((state) => state.todos)
 
   const monthDate = dayjs(month)
@@ -60,7 +60,7 @@ export function CalendarView({ month, onMonthChange }: CalendarViewProps) {
                 'is-selected': isoDate === selectedDate,
                 'is-today': isoDate === dayjs().format('YYYY-MM-DD'),
               })}
-              onClick={() => setSelectedDate(isoDate)}
+              onClick={() => openDayView(isoDate)}
             >
               <span className="calendar-day__date">{day.date()}</span>
               <span className="calendar-day__count">{count > 0 ? `${count} 项` : ''}</span>

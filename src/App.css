@@ -1,10 +1,11 @@
- .calendar-panel,
+.calendar-panel,
 .timeline-panel,
 .todo-form {
   background: var(--bg-panel);
   border: 1px solid var(--line);
-  border-radius: 24px;
-  padding: 20px;
+  border-radius: 14px;
+  padding: 10px;
+  min-height: 0;
 }
 
 .panel-header,
@@ -13,48 +14,75 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 12px;
+  gap: 6px;
+}
+
+.panel-header h2,
+.todo-form__header h2,
+.timeline-panel h2 {
+  font-size: 12px;
+  line-height: 1.15;
+}
+
+.timeline-section h3 {
+  font-size: 11px;
+}
+
+.calendar-panel {
+  display: grid;
+  grid-template-rows: auto auto 1fr;
+  min-height: 0;
+  height: 100%;
 }
 
 .calendar-actions {
   display: flex;
-  gap: 8px;
+  gap: 4px;
 }
 
 .calendar-actions button,
 .todo-form button {
-  padding: 10px 14px;
+  padding: 3px 8px;
   border-radius: 999px;
   background: var(--accent-soft);
   color: var(--text);
+  font-size: 11px;
 }
 
 .calendar-grid {
   display: grid;
   grid-template-columns: repeat(7, minmax(0, 1fr));
-  gap: 10px;
-  margin-top: 16px;
+  grid-template-rows: repeat(6, minmax(0, 1fr));
+  gap: 4px;
+  margin-top: 6px;
+  min-height: 0;
+  height: 100%;
+  align-items: stretch;
 }
 
 .calendar-weekdays {
   display: grid;
   grid-template-columns: repeat(7, minmax(0, 1fr));
-  margin-top: 16px;
+  margin-top: 6px;
   color: var(--text-soft);
-  font-size: 13px;
+  font-size: 10px;
 }
 
 .calendar-day {
-  min-height: 88px;
-  border-radius: 18px;
+  min-height: 0;
+  height: 100%;
+  min-width: 0;
+  border-radius: 8px;
   border: 1px solid transparent;
   background: rgba(15, 23, 42, 0.32);
   color: var(--text);
-  padding: 12px;
+  padding: 4px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: space-between;
+  gap: 2px;
+  overflow: hidden;
 }
 
 .calendar-day.is-outside {
@@ -71,23 +99,42 @@
 }
 
 .calendar-day__date {
-  font-size: 14px;
+  font-size: 10px;
+  line-height: 1;
 }
 
 .calendar-day__count {
-  font-size: 12px;
+  font-size: 8px;
   color: var(--text-soft);
+  white-space: nowrap;
 }
 
 .todo-form {
   display: grid;
-  gap: 14px;
+  gap: 6px;
+}
+
+.todo-form__header span {
+  font-size: 10px;
 }
 
 .todo-form label {
   display: grid;
-  gap: 8px;
+  grid-template-columns: 48px 1fr;
+  align-items: center;
+  gap: 6px;
   color: var(--text-soft);
+  font-size: 11px;
+}
+
+.todo-form label span {
+  white-space: nowrap;
+}
+
+.todo-form input {
+  min-width: 0;
+  padding: 6px 8px;
+  font-size: 11px;
 }
 
 .todo-form button:disabled {
@@ -97,12 +144,14 @@
 
 .timeline-panel {
   display: grid;
-  gap: 18px;
+  grid-template-rows: auto auto auto;
+  gap: 8px;
+  align-content: start;
 }
 
 .timeline-section {
   display: grid;
-  gap: 12px;
+  gap: 4px;
 }
 
 .timeline-list {
@@ -110,24 +159,32 @@
   margin: 0;
   padding: 0;
   display: grid;
-  gap: 10px;
+  gap: 4px;
 }
 
 .timeline-item {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 12px;
-  padding: 14px 16px;
-  border-radius: 18px;
+  gap: 6px;
+  padding: 6px 8px;
+  border-radius: 10px;
   background: rgba(15, 23, 42, 0.38);
   border: 1px solid var(--line);
+  font-size: 11px;
 }
 
 .timeline-item label {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 6px;
+  min-width: 0;
+}
+
+.timeline-item label span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .timeline-item--stacked {
@@ -138,6 +195,7 @@
 .empty-text,
 .timeline-section__header span {
   color: var(--text-soft);
+  font-size: 10px;
 }
 
 .is-completed {

@@ -12,40 +12,24 @@
   "app": {
     "windows": [
       {
-        "label": "ball",
-        "title": "Todo Ball",
-        "width": 96,
-        "height": 96,
-        "minWidth": 96,
-        "minHeight": 96,
-        "maxWidth": 96,
-        "maxHeight": 96,
+        "label": "main",
+        "title": "Todo Desktop",
+        "width": 76,
+        "height": 76,
+        "minWidth": 76,
+        "minHeight": 76,
+        "maxWidth": 760,
+        "maxHeight": 620,
         "resizable": false,
         "fullscreen": false,
         "decorations": false,
         "transparent": true,
         "alwaysOnTop": true,
         "skipTaskbar": true,
-        "shadow": true,
+        "shadow": false,
         "visible": true,
-        "url": "ball.html"
-      },
-      {
-        "label": "panel",
-        "title": "Todo Desktop",
-        "width": 920,
-        "height": 780,
-        "minWidth": 720,
-        "minHeight": 620,
-        "resizable": true,
-        "fullscreen": false,
-        "decorations": false,
-        "transparent": true,
-        "alwaysOnTop": true,
-        "skipTaskbar": false,
-        "shadow": true,
-        "visible": false,
-        "url": "panel.html"
+        "focus": false,
+        "url": "index.html"
       }
     ],
     "security": {

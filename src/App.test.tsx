@@ -11,6 +11,8 @@ beforeEach(() => {
   useUiStore.persist.clearStorage()
   useUiStore.setState({
     selectedDate: '2026-03-31',
+    visibleMonth: '2026-03-01',
+    currentView: 'month',
     panelVisible: true,
     ballPosition: null,
   })
@@ -18,15 +20,9 @@ beforeEach(() => {
 })
 
 describe('App', () => {
-  it('renders panel app and creates a todo in timeline', () => {
+  it('opens day view after selecting a date', () => {
     render(<App />)
-
-    fireEvent.change(screen.getByPlaceholderText('例如：整理周会材料'), {
-      target: { value: '准备周报' },
-    })
-    fireEvent.click(screen.getByRole('button', { name: '保存待办' }))
-
-    expect(screen.getByText('准备周报')).toBeInTheDocument()
-    expect(screen.getByText('未设置时间')).toBeInTheDocument()
+    fireEvent.click(screen.getByText('31'))
+    expect(screen.getByText('当日待办')).toBeInTheDocument()
   })
 })

@@ -11,6 +11,8 @@ beforeEach(() => {
   useUiStore.persist.clearStorage()
   useUiStore.setState({
     selectedDate: '2026-03-31',
+    visibleMonth: '2026-03-01',
+    currentView: 'month',
     panelVisible: true,
     ballPosition: null,
   })
@@ -18,20 +20,18 @@ beforeEach(() => {
 })
 
 describe('TodoForm integration', () => {
-  it('creates unscheduled todo and syncs panel views', () => {
+  it('creates unscheduled todo in month view and shows date count', () => {
     render(<App />)
 
     fireEvent.change(screen.getByPlaceholderText('例如：整理周会材料'), {
       target: { value: '准备周报' },
     })
-    fireEvent.click(screen.getByRole('button', { name: '保存待办' }))
+    fireEvent.click(screen.getByRole('button', { name: '添加到该日期' }))
 
-    expect(screen.getByText('准备周报')).toBeInTheDocument()
-    expect(screen.getByText('未设置时间')).toBeInTheDocument()
     expect(screen.getByText('1 项')).toBeInTheDocument()
   })
 
-  it('creates scheduled todo and toggles completion', () => {
+  it('creates scheduled todo and shows it in day view after date selection', () => {
     render(<App />)
 
     fireEvent.change(screen.getByPlaceholderText('例如：整理周会材料'), {
@@ -40,12 +40,9 @@ describe('TodoForm integration', () => {
     fireEvent.change(screen.getByLabelText('时间（可选）'), {
       target: { value: '14:00' },
     })
-    fireEvent.click(screen.getByRole('button', { name: '保存待办' }))
+    fireEvent.click(screen.getByRole('button', { name: '添加到该日期' }))
+    fireEvent.click(screen.getByText('31'))
 
     expect(screen.getByText('14:00')).toBeInTheDocument()
-    const checkbox = screen.getAllByRole('checkbox')[0]
-    fireEvent.click(checkbox)
-
-    expect(screen.getByText('方案评审')).toHaveClass('is-completed')
   })
 })

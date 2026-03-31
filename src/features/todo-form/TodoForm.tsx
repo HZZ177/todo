@@ -6,9 +6,14 @@ import { useUiStore } from '../../store/ui-store'
 
 export function TodoForm() {
   const selectedDate = useUiStore((state) => state.selectedDate)
+  const currentView = useUiStore((state) => state.currentView)
   const addTodo = useTodoStore((state) => state.addTodo)
   const [title, setTitle] = useState('')
   const [time, setTime] = useState('')
+
+  const heading = currentView === 'month' ? '月视图快速录入' : '当天快速录入'
+  const eyebrow = currentView === 'month' ? '快速录入' : '日视图录入'
+  const buttonText = currentView === 'month' ? '添加到该日期' : '保存待办'
 
   const canSubmit = useMemo(() => title.trim().length > 0, [title])
 
@@ -30,8 +35,8 @@ export function TodoForm() {
     <form className="todo-form" onSubmit={handleSubmit}>
       <div className="todo-form__header">
         <div>
-          <p className="eyebrow">快速录入</p>
-          <h2>添加待办</h2>
+          <p className="eyebrow">{eyebrow}</p>
+          <h2>{heading}</h2>
         </div>
         <span>{selectedDate}</span>
       </div>
@@ -51,7 +56,7 @@ export function TodoForm() {
       </label>
 
       <button type="submit" disabled={!canSubmit}>
-        保存待办
+        {buttonText}
       </button>
     </form>
   )

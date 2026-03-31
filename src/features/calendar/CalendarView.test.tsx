@@ -1,4 +1,4 @@
-import { fireEvent, render, screen, within } from '@testing-library/react'
+import { fireEvent, render, screen } from '@testing-library/react'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 
 import { CalendarView } from './CalendarView'
@@ -11,36 +11,24 @@ beforeEach(() => {
   useUiStore.persist.clearStorage()
   useUiStore.setState({
     selectedDate: '2026-03-31',
+    visibleMonth: '2026-03-01',
+    currentView: 'month',
     panelVisible: true,
     ballPosition: null,
   })
-  useTodoStore.setState({
-    todos: [
-      {
-        id: '1',
-        title: '准备周会',
-        date: '2026-03-31',
-        completed: false,
-        createdAt: '2026-03-01T00:00:00.000Z',
-        updatedAt: '2026-03-01T00:00:00.000Z',
-      },
-    ],
-  })
+  useTodoStore.setState({ todos: [] })
 })
 
 describe('CalendarView', () => {
-  it('changes month and marks selected date', () => {
+  it('changes month and opens day view after selecting date', () => {
     const onMonthChange = vi.fn()
-    const { container } = render(<CalendarView month="2026-03-01" onMonthChange={onMonthChange} />)
+    render(<CalendarView month="2026-03-01" onMonthChange={onMonthChange} />)
 
     fireEvent.click(screen.getByRole('button', { name: '下月' }))
     expect(onMonthChange).toHaveBeenCalledWith('2026-04-01')
 
-    const matchedDay = [...container.querySelectorAll('.calendar-day')].find((node) =>
-      within(node as HTMLElement).queryByText('1 项'),
-    )
-    fireEvent.click(matchedDay as HTMLElement)
-
+    fireEvent.click(screen.getByText('31'))
+    expect(useUiStore.getState().currentView).toBe('day')
     expect(useUiStore.getState().selectedDate).toBe('2026-03-31')
   })
 })
